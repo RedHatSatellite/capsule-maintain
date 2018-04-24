@@ -1,0 +1,56 @@
+---
+- name: Create /certs directory on satellite
+  file:
+    path: /certs
+    state: directory
+    mode: 0744
+  delegate_to: localhost
+  run_once: true
+
+- name: Create /certs directory on capsule
+  file:
+    path: /certs
+    state: directory
+    mode: 0744
+
+- name: Create capsule certs on satellite for capsule install version 6.2
+  shell:
+      "capsule-certs-generate --capsule-fqdn {{ inventory_hostname }} --certs-tar /certs/{{ inventory_hostname }}-certs.tar >/certs/{{ inventory_hostname }}-out.raw"
+  delegate_to: localhost
+  when: capsule_version == 6.2 and capsule_install
+
+- name: Create capsule certs on satellite for capsule install version 6.3
+  shell:
+      "capsule-certs-generate --foreman-proxy-fqdn {{ inventory_hostname }} --certs-tar /certs/{{ inventory_hostname }}-certs.tar >/certs/{{ inventory_hostname }}-out.raw"
+  delegate_to: localhost
+  when: capsule_version == 6.3 and capsule_install
+
+- name: Create capsule certs on satellite for capsule upgrade version 6.3
+  shell:
+      "capsule-certs-generate --foreman-proxy-fqdn {{ inventory_hostname }} --certs-tar /certs/{{ inventory_hostname }}-certs.tar --certs-update-all"
+  delegate_to: localhost
+  when: capsule_version == 6.3 and capsule_upgrade
+
+- name: Copy the required certs to the capsule
+  copy:
+    src: /certs/{{ inventory_hostname }}-certs.tar
+    dest: /certs/
+    owner: root
+    group: root
+    mode: 0744
+    backup: yes
+
+- name: Copy the installer command to the capsule for capsule install
+  copy:
+    src: /certs/{{ inventory_hostname }}-out.raw
+    dest: /certs/
+    owner: root
+    group: root
+    mode: 0744
+    backup: yes
+  when: capsule_install
+
+- name: Extract the capsule-installer command for capsule install
+  shell:
+    sed 's/\x1B\[[0-9;]*[JKmsu]//g' "/certs/{{ inventory_hostname }}-out.raw" | grep -e '^\s\+satellite-installer ' -e '^\s\+foreman-installer ' -e '^\s\+capsule-installer ' -e '^\s\+--' | sed 's|\(^\s\+--certs-tar\s\+"\).*$|\1/certs/{{ inventory_hostname }}-certs.tar"\\|' > "/certs/{{ inventory_hostname }}-script.sh"
+  when: capsule_install

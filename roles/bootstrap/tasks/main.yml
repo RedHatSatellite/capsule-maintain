@@ -1,0 +1,16 @@
+---
+- name: Get bootstrap.py
+  get_url:
+    url: http://{{ satellite_hostname }}/pub/bootstrap.py
+    dest: /tmp/bootstrap.py
+    mode: 0755
+  when: capsule_install
+
+- name: Run bootstrap.py
+  command: /tmp/bootstrap.py --server={{ satellite_hostname }} --organization={{ satellite_org_label }} --activationkey={{ satellite_activation_key }} --skip-foreman
+  ignore_errors: true
+  when: capsule_install
+
+- name: subscription-manager refresh to get new repos for Capsule upgrade
+  command: subscription-manager refresh
+  when: capsule_upgrade

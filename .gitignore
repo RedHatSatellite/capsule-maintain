@@ -1,0 +1,15 @@
+#System files
+*.pyc
+*.retry
+*.tar.gz
+*.swp
+*.swo
+
+#Log files
+logs/playbook.log
+
+#cache files
+cache/*
+
+#Varies per deployment
+vars.yml

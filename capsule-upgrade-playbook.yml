@@ -1,0 +1,14 @@
+---
+- hosts: capsules
+  vars_files:
+  - vars.yml
+  vars:
+    capsule_install: false
+    capsule_upgrade: true
+  remote_user: root
+  roles:
+  - create_certs
+  - bootstrap
+  - repo_enable
+  - capsule_upgrade
+  - capsule_check

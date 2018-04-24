@@ -1,0 +1,3 @@
+---
+- name: Check capsule status
+  command: katello-service status

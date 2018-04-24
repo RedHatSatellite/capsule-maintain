@@ -1,0 +1,9 @@
+---
+- name: Stop katello-service
+  command: katello-service stop
+
+- name: Update yum
+  command: yum update -y
+
+- name: Run capsule-installer command
+  command: satellite-installer --scenario capsule --upgrade --foreman-proxy-content-certs-tar /certs/{{ inventory_hostname }}-certs.tar --certs-update-all --certs-regenerate true --certs-deploy true
