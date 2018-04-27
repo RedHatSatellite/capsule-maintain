@@ -9,6 +9,8 @@ Install/upgrade a Satellite6 Capsule server using ansible playbooks.
 - Password-less ssh from Satellite to all required capsules.
 - You can run install/upgrade on one or more capsule servers at one time.
 - Make sure that the required firewall ports are opened in your Capsule and Satellite servers.
+- Activation Key / Content view with the following repos: rhel-7-server-rpms, rhel-server-rhscl-7-rpms, rhel-7-server-satellite-capsule-<capsule_version>-rpms, rhel-7-server-satellite-tools-<capsule_version>-rpms where capsule_version is 6.2 or 6.3.
+
 
 #### Supported Scenaios: ####
 - Capsule 6.2/6.3 installation.
