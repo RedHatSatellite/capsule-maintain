@@ -37,7 +37,6 @@ On the Satellite server:
   ```
 
 4. In `vars.yml` file, update the following parameters:
-   - `satellite_hostname` - Hostname FQDN of the Satellite server.
    - `capsule_version` - Version of the capsule (`6.2` or `6.3`)to be installed.
    - `satellite_org_label` - (applicable to install only) Label of the Satellite Organization to which the capsule needs to be registered.
    - `satellite_activation_key` - (applicable to install only) Activation key of the Satellite Organization to which the capsule needs to be registered.
