@@ -50,6 +50,7 @@
     backup: yes
   when: capsule_install
 
+# Extract the capsule install command using regex until RFE BZ 1573374 is fixed.
 - name: Extract the capsule-installer command for capsule install
   shell:
     sed 's/\x1B\[[0-9;]*[JKmsu]//g' "/certs/{{ inventory_hostname }}-out.raw" | grep -e '^\s\+satellite-installer ' -e '^\s\+foreman-installer ' -e '^\s\+capsule-installer ' -e '^\s\+--' | sed 's|\(^\s\+--certs-tar\s\+"\).*$|\1/certs/{{ inventory_hostname }}-certs.tar"\\|' > "/certs/{{ inventory_hostname }}-script.sh"
