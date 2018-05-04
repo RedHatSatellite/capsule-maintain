@@ -5,7 +5,7 @@
   vars:
     capsule_install: false
     capsule_upgrade: true
-    z_stream_upgrade: false
+    z_stream_update: false
   remote_user: root
   roles:
   - create_certs
