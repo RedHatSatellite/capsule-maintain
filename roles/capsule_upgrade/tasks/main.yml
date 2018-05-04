@@ -7,3 +7,8 @@
 
 - name: Run capsule-installer command
   command: satellite-installer --scenario capsule --upgrade --foreman-proxy-content-certs-tar /certs/{{ inventory_hostname }}-certs.tar --certs-update-all --certs-regenerate true --certs-deploy true
+  when: capsule_version == 6.3 and not z_stream_upgrade
+
+- name: Run capsule-installer command
+  command: satellite-installer --scenario capsule --upgrade
+  when: capsule_version == 6.2 or z_stream_upgrade
