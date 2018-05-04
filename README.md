@@ -34,7 +34,7 @@ On the Satellite server:
 
 2. git clone this project.
   ```console
-    # git clone https://github.com/sthirugn/capsule-install.git
+    # git clone https://github.com/RedHatSatellite/capsule-maintain.git
     # cd capsule-install
   ```
 
