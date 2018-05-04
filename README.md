@@ -18,7 +18,7 @@ Install/upgrade a Satellite6 Capsule server using ansible playbooks.
   where `capsule_version` is `6.2` or `6.3`.
 
 
-#### Supported Scenaios: ####
+#### Supported Scenarios: ####
 - Capsule 6.2/6.3 installation.
 - Capsule 6.2 to 6.3 upgrade.
 - Capsule z-stream update.
