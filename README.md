@@ -15,6 +15,7 @@ Install/upgrade a Satellite6 Capsule server using ansible playbooks.
 #### Supported Scenaios: ####
 - Capsule 6.2/6.3 installation.
 - Capsule 6.2 to 6.3 upgrade.
+- Capsule z-stream upgrade
 
 #### Setup ####
 On the Satellite server:
@@ -48,7 +49,11 @@ On the Satellite server:
     ```console
       ansible-playbook capsule-install-playbook.yml
     ```
-  * Capsule Upgrade:
+  * Capsule Upgrade (y-stream):
     ```console
       ansible-playbook capsule-upgrade-playbook.yml
+    ```
+  * Capsule Upgrade (z-stream):
+    ```console
+      ansible-playbook capsule-zupgrade-playbook.yml
     ```
