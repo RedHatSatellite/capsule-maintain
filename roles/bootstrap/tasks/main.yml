@@ -4,7 +4,7 @@
   register: hostname
   delegate_to: localhost
 - set_fact:
-    satellite_hostname: hostname.stdout
+    satellite_hostname: "{{ hostname.stdout }}"
 - name: Get bootstrap.py
   get_url:
     url: http://{{ satellite_hostname }}/pub/bootstrap.py
