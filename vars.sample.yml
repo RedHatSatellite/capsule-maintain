@@ -4,3 +4,4 @@ capsule_version: 6.3
 # Applicable only for Capsule install
 satellite_org_label: changeme
 satellite_activation_key: changeme
+skip_katello_agent: false

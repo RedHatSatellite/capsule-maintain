@@ -47,6 +47,7 @@ On the Satellite server:
    - `capsule_version` - Version of the capsule (`6.2` or `6.3`)to be installed.
    - `satellite_org_label` - (applicable to install only) Label of the Satellite Organization to which the capsule needs to be registered.
    - `satellite_activation_key` - (applicable to install only) Activation key of the Satellite Organization to which the capsule needs to be registered.
+   - `skip_katello_agent` - (applicable to install only) Set to true to not install katello-agent. (defaults to false)
 
 5. Update `inventory` file with the capsule(s) hostname(s).
 

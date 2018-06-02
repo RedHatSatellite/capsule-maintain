@@ -13,9 +13,14 @@
   when: capsule_install
 
 - name: Run bootstrap.py
-  command: /tmp/bootstrap.py --server={{ satellite_hostname }} --organization={{ satellite_org_label }} --activationkey={{ satellite_activation_key }} --skip-foreman
+  command: /tmp/bootstrap.py --server={{ satellite_hostname }} --organization={{ satellite_org_label }} --activationkey={{ satellite_activation_key }} --skip foreman
   ignore_errors: true
-  when: capsule_install
+  when: capsule_install and not skip_katello_agent
+
+- name: Run bootstrap.py
+  command: /tmp/bootstrap.py --server={{ satellite_hostname }} --organization={{ satellite_org_label }} --activationkey={{ satellite_activation_key }} --skip foreman --skip katello-agent
+  ignore_errors: true
+  when: capsule_install and skip_katello_agent
 
 - name: subscription-manager refresh to get new repos for Capsule upgrade
   command: subscription-manager refresh
