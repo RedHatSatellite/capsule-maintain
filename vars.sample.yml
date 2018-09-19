@@ -6,3 +6,4 @@ satellite_org_label: changeme
 satellite_activation_key: changeme
 skip_katello_agent: false
 update_server: false
+capsule_cname: none
