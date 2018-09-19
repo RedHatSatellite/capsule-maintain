@@ -1,4 +1,8 @@
 ---
+- name: Update server
+  yum: name='*' state=latest
+  when: update_server
+
 - name: Install basic packages
   yum: name={{ item }} state=present
   with_items:
