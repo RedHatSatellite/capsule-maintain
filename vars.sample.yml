@@ -9,3 +9,4 @@ update_server: false
 capsule_cname: none
 puppet4: false
 force_bootstrap_registration: false
+enable_tools_repo: true
