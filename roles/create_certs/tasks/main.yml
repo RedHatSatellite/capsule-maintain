@@ -21,7 +21,12 @@
 
 - name: Create capsule certs on satellite for capsule install version 6.3
   shell:
-      "capsule-certs-generate --foreman-proxy-fqdn {{ inventory_hostname }} --certs-tar /certs/{{ inventory_hostname }}-certs.tar >/certs/{{ inventory_hostname }}-out.raw"
+      capsule-certs-generate
+      --foreman-proxy-fqdn {{ inventory_hostname }}
+      --certs-tar /certs/{{ inventory_hostname }}-certs.tar
+      --foreman-proxy-cname "{{ capsule_cname if capsule_cname != 'none' else '' }}"
+      --cname "{{ capsule_cname if capsule_cname != 'none' else '' }}"
+      >/certs/{{ inventory_hostname }}-out.raw
   delegate_to: localhost
   when: capsule_version == 6.3 and capsule_install
 
