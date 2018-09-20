@@ -1,15 +1,9 @@
 ---
 - name: Install basic packages
-  yum: name={{ item }} state=present
-  with_items:
-    - "ntp"
-    - "chrony"
+  yum: name=chrony state=present
 
 - name: Start ntp and chrony services
-  service: name={{ item }} state=started
-  with_items:
-    - "ntpd"
-    - "chronyd"
+  service: name=chronyd state=started
 
 - name: Install capsule
   yum: name=satellite-capsule state=present
