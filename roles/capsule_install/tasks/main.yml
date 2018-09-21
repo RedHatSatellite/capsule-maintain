@@ -6,7 +6,7 @@
 - name: Install basic packages
   yum: name=chrony state=present
 
-- name: Start ntp and chrony services
+- name: Start chrony service
   service: name=chronyd state=started
 
 - name: Install capsule
