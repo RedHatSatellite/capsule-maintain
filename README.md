@@ -4,7 +4,7 @@ Install/upgrade a Satellite6 Capsule server using ansible playbooks.
 ## Getting Started
 
 #### What you need: ####
-- Satellite 6.2/6.3 server. The Satellite server will be used as the Ansible control node.
+- Satellite 6.2 or later version server. The Satellite server will be used as the Ansible control node.
 - Target server(s) for Capsule installation/upgrade.
 - Password-less ssh from Satellite to all required capsules.
 - You can run install/upgrade/update on one or more capsule servers at one time.
@@ -15,12 +15,12 @@ Install/upgrade a Satellite6 Capsule server using ansible playbooks.
   * rhel-7-server-satellite-capsule-<capsule_version>-rpms
   * rhel-7-server-satellite-tools-<capsule_version>-rpms
 
-  where `capsule_version` is `6.2` or `6.3`.
+  where `capsule_version` is `6.2` or later..
 
 
 #### Supported Scenarios: ####
-- Capsule 6.2/6.3 installation.
-- Capsule 6.2 to 6.3 upgrade.
+- Capsule 6.2 or later version installation.
+- Capsule 6.2 or later upgrade.
 - Capsule z-stream update.
 
 #### Setup ####
@@ -44,7 +44,7 @@ On the Satellite server:
   ```
 
 4. In `vars.yml` file, update the following parameters:
-   - `capsule_version` - Version of the capsule (`6.2` or `6.3`)to be installed.
+   - `capsule_version` - Version of the capsule (`6.2`,`6.3`,`6.4`, or later)to be installed.
    - `satellite_org_label` - (applicable to install only) Label of the Satellite Organization to which the capsule needs to be registered.
    - `satellite_activation_key` - (applicable to install only) Activation key of the Satellite Organization to which the capsule needs to be registered.
    - `skip_katello_agent` - (applicable to install only) Set to true to not install katello-agent. (defaults to false)
