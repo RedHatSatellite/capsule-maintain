@@ -1,14 +1,14 @@
 ---
-- name: Stop katello-service
-  command: katello-service stop
+- name: Stop services
+  command: foreman-maintain service stop
 
 - name: Update yum
   command: yum update -y
 
-- name: Run capsule-installer command
+- name: Run satellite-installer upgrade command
   command: satellite-installer --scenario capsule --upgrade --foreman-proxy-content-certs-tar /certs/{{ inventory_hostname }}-certs.tar --certs-update-all --certs-regenerate true --certs-deploy true
   when: capsule_version == 6.3 and not z_stream_update
 
-- name: Run capsule-installer command
+- name: Run satellite-installer upgrade command
   command: satellite-installer --scenario capsule --upgrade
   when: capsule_version == 6.2 or z_stream_update

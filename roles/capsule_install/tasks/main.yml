@@ -12,5 +12,5 @@
 - name: Install capsule
   yum: name=satellite-capsule state=present
 
-- name: Run capsule-installer command
+- name: Run satellite-installer command
   command: /bin/bash "/certs/{{ inventory_hostname }}-script.sh"
