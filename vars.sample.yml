@@ -10,3 +10,10 @@ capsule_cname: none
 puppet4: false
 force_bootstrap_registration: false
 enable_tools_repo: true
+
+# Some examples of options that you can provide are:
+# Capsule 6.3 install with custom certs:
+# capsule_certs_generate_options: --server-cert /cert/custom.crt --server-cert-req /cert/custom.crt.req --server-key /cert/custom.key --server-ca-cert /cert/cacert.crt
+# Capsule 6.3 upgrade with custom certs:
+# capsule_certs_generate_options: --server-cert /cert/custom.crt --server-cert-req /cert/custom.crt.req --server-key /cert/custom.key --server-ca-cert /cert/cacert.crt --certs-update-server
+capsule_certs_generate_options: none

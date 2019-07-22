@@ -13,26 +13,25 @@
     state: directory
     mode: 0744
 
-- name: Create capsule certs on satellite for capsule install version 6.2
+- name: Create capsule certs on satellite for capsule install (6.2 or 6.3)
   shell:
-      "capsule-certs-generate --capsule-fqdn {{ inventory_hostname }} --certs-tar /certs/{{ inventory_hostname }}-certs.tar >/certs/{{ inventory_hostname }}-out.raw"
+      capsule-certs-generate
+      {{ '--foreman-proxy-fqdn' if capsule_version != 6.2 else '--capsule-fqdn' }} {{ inventory_hostname }}
+      --certs-tar /certs/{{ inventory_hostname }}-certs.tar
+      --foreman-proxy-cname "{{ capsule_cname if capsule_cname != 'none' else '' }}"
+      --cname "{{ capsule_cname if capsule_cname != 'none' else '' }}"
+      {{ capsule_certs_generate_options if capsule_certs_generate_options != 'none' else '' }}
+      >/certs/{{ inventory_hostname }}-out.raw
   delegate_to: localhost
-  when: capsule_version == 6.2 and capsule_install
+  when: capsule_install
 
-- name: Create capsule certs on satellite for capsule install version 6.3
+- name: Create capsule certs on satellite for capsule upgrade version 6.3
   shell:
       capsule-certs-generate
       --foreman-proxy-fqdn {{ inventory_hostname }}
       --certs-tar /certs/{{ inventory_hostname }}-certs.tar
-      --foreman-proxy-cname "{{ capsule_cname if capsule_cname != 'none' else '' }}"
-      --cname "{{ capsule_cname if capsule_cname != 'none' else '' }}"
-      >/certs/{{ inventory_hostname }}-out.raw
-  delegate_to: localhost
-  when: capsule_version == 6.3 and capsule_install
-
-- name: Create capsule certs on satellite for capsule upgrade version 6.3
-  shell:
-      "capsule-certs-generate --foreman-proxy-fqdn {{ inventory_hostname }} --certs-tar /certs/{{ inventory_hostname }}-certs.tar --certs-update-all"
+      --certs-update-all
+      {{ capsule_certs_generate_options if capsule_certs_generate_options != 'none' else '' }}
   delegate_to: localhost
   when: capsule_version == 6.3 and capsule_upgrade
 
