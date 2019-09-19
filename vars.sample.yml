@@ -1,5 +1,5 @@
 ---
-capsule_version: 6.3
+capsule_version: 6.4
 
 # Applicable only for Capsule install
 satellite_org_label: changeme
@@ -7,6 +7,5 @@ satellite_activation_key: changeme
 skip_katello_agent: false
 update_server: false
 capsule_cname: none
-puppet4: false
 force_bootstrap_registration: false
 enable_tools_repo: true

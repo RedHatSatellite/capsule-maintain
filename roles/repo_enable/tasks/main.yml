@@ -10,23 +10,11 @@
       --enable rhel-server-rhscl-7-rpms
       --enable rhel-7-server-satellite-maintenance-6-rpms
 
-- name: Enable capsule installation/upgrade puppet4 repos
-  command:
-      subscription-manager repos
-      --enable rhel-7-server-satellite-capsule-{{ capsule_version }}-puppet4-rpms
-  when: puppet4
-
 - name: Enable tools repo
   command:
       subscription-manager repos
       --enable rhel-7-server-satellite-tools-{{ capsule_version }}-rpms
   when: enable_tools_repo
-
-- name: Enable tools repo for puppet4
-  command:
-      subscription-manager repos
-      --enable rhel-7-server-satellite-tools-{{ capsule_version }}-puppet4-rpms
-  when: enable_tools_repo and puppet4
 
 - name: Remove epel
   yum_repository:
