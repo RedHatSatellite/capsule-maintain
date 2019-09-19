@@ -8,7 +8,6 @@
     z_stream_update: false
   remote_user: root
   roles:
-  - create_certs
   - bootstrap
   - repo_enable
   - capsule_upgrade
